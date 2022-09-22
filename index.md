@@ -1,16 +1,69 @@
-# Introduction
+# Pepperi System
+
+## Contents
+* [Introduction](#introduction)
+* [Keywords](#keywords)
+* [Layers](#layers)
+
+## Introduction
 This repo is meant to store the architecture design conclusions and reasoning of the Pepperi system.
 
-## The system
-The system is a serverless microservice architecture as a service.
+### What is the system?
+The system is a serverless microservice architecture as a service, for multi tenant applications.
 
-The system allows creating additional micro services.
+The system is build for multiple micro-services and allowing creation of additional micro-services into the system. 
 
-Each microservice is full-stack application with three layers for server-side, client-side and cpi-side. 
+Each micro-service can have server-side logic, client-side UI and business logic.
 
-Within the system there are builtin system addons, that the system has been implemented by them. (eg. ADAL, DocDB etc.)
+The micro services have access to capabilities exposed by other micro services. 
 
-Additionally there are builtin optional addons that can enable more capabilities (eg. DIMX, User Defined Collections).
+The are basic builtin services that expose basic serverless functionality, like exposing API endpoints to microservice functions, and saving data in serverless data bases.
+
+These basic services are currently implemented by AWS serverless technologies including Lambda, S3, DynamoDB, SNS, API Gateway and more.
+
+Theoretically it should be possible to implement the system on any cloud or even local infrastructure, by replacing the basic micro-services by services that implement them on other infrastructures.
+
+## Keywords
+
+The following is a list of keywords that will be used in this documentation. Each keyword is a naming of a component in the Pepperi system. These keywords will later be used in the documentation when we deep dive into the system.
+
+* [System](#system)
+* [Addon](#addon)
+* [Environment](#environment)
+* [Tenant](#tenant)
+
+
+### System
+The entirety of the system defined here and it's architecture. Hopefully this is only a place holder and we will be able to name it.
+
+### Addon
+Each micro service in the system is an addon. 
+
+The addon is created in the environment by the developer and can be installed on tenants in order to expose its functionality. 
+
+There are mandatory addons, that implement the system basic functionality that the must be installed on the tenant for the system to work, and there are optional addons that expose additional optional functionality.
+
+See [addon development](addon-development.md) for more information on how addons are developed.
+
+### Environment
+The environment is an instance of the system. Each environment is fully decoupled from other environments. 
+
+An addon can be developed for a single environment or for multiple environments.
+
+Separate environments can be deployed on different AWS regions, or even a different AWS account entirely.
+We currently have 3 environments production, staging and eu.
+
+### Tenant
+
+### Server Side
+
+### Client Side
+
+### CPI Side
+
+### Template
+
+### 
 
 ## Layers
 We will divide the design into folders, each folder containing design of a layer in the system.
