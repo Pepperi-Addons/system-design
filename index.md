@@ -11,17 +11,17 @@ This repo is meant to store the architecture design conclusions and reasoning of
 ### What is the system?
 The system is a serverless microservice architecture as a service, for multi tenant applications.
 
-The system is build for multiple micro-services and allowing creation of additional micro-services into the system. 
+The system is build for multiple micro-services and allowing creation and adaptation of additional micro-services into the system. 
 
 Each micro-service can have server-side logic, client-side UI and business logic.
 
 The micro services have access to capabilities exposed by other micro services. 
 
-The are basic builtin services that expose basic serverless functionality, like exposing API endpoints to microservice functions, and saving data in serverless data bases.
+There are basic builtin services that expose basic serverless functionality, like exposing API endpoints to microservice functions, and saving data in serverless data bases.
 
 These basic services are currently implemented by AWS serverless technologies including Lambda, S3, DynamoDB, SNS, API Gateway and more.
 
-Theoretically it should be possible to implement the system on any cloud or even local infrastructure, by replacing the basic micro-services by services that implement them on other infrastructures.
+Theoretically, it should be possible to implement the system on any cloud or even local infrastructure, by replacing the basic micro-services by services that implement them on other infrastructures.
 
 ## Keywords
 
@@ -50,10 +50,18 @@ The environment is an instance of the system. Each environment is fully decouple
 
 An addon can be developed for a single environment or for multiple environments.
 
+An environment is comprised of the addons available in the environment, and the tenants that exist in the environment.
+
 Separate environments can be deployed on different AWS regions, or even a different AWS account entirely.
 We currently have 3 environments production, staging and eu.
 
 ### Tenant
+A tenant is basically an account in an environment. A tenant can only exist in one single environment. 
+A tenant can have a single user or multiple users. 
+Users in an environment can be assigned different roles (eg. Admin, Buyer or custom roles).
+Each tenant's data within an environment is fully decoupled and segregated. 
+Addons are installed on a tenant, meaning that each tenant can have a different set of addons installed and/or different versions of addons installed.
+
 
 ### Server Side
 
